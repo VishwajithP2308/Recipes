@@ -19,8 +19,14 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG")
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    '52.91.113.182', # Your EC2 public IP
+    'allinonrecipes.online',
+    'www.allinonrecipes.online',
+    'd1yahgs5wqczub.cloudfront.net'
+]
 
 # Application definition
 
@@ -56,6 +62,9 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+"https://d1yahgs5wqczub.cloudfront.net",
+"https://allinonrecipes.online",
+    "https://www.allinonrecipes.online",
 ]
 
 TEMPLATES = [
