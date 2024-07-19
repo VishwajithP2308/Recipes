@@ -21,11 +21,16 @@ DEBUG = os.environ.get("DEBUG")
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
+	'api.allrecipes.pro',
+	'recipes.allrecipes.pro',
+	'10.0.3.93',
     'localhost',
     '52.91.113.182', # Your EC2 public IP
     'allinonrecipes.online',
     'www.allinonrecipes.online',
-    'd1yahgs5wqczub.cloudfront.net'
+    'd1yahgs5wqczub.cloudfront.net',
+	"PublicALB-386025548.us-east-1.elb.amazonaws.com",
+	'127.0.0.8'
 ]
 
 # Application definition
