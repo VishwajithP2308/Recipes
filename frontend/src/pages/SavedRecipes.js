@@ -43,9 +43,6 @@ const SavedRecipes = () => {
                             <img src={savedRecipe.recipe.image_url} alt={savedRecipe.recipe.name} style={styles.image} />
                             <h2 style={styles.recipeName}>{savedRecipe.recipe.name}</h2>
                             <p style={styles.recipeDescription}>{savedRecipe.recipe.description}</p>
-                            <p style={styles.recipeCreatedBy}>
-                                Created by: {savedRecipe.recipe.created_by ? savedRecipe.recipe.created_by.username : 'Unknown'}
-                            </p>
                         </Link>
                     </div>
                 ))}
