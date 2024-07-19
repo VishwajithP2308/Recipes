@@ -1,0 +1,50 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  SubnetId:
+    Description: The ID of the private subnet where the EC2 instance will be launched
+    Type: String
+  KeyPairName:
+    Description: The name of the key pair to access the EC2 instance
+    Type: String
+  AmiId:
+    Description: The ID of the Amazon Machine Image (AMI) to use
+    Type: String
+  VpcId:
+    Description: The ID of the VPC
+    Type: String
+  IpAddress:
+    Description: Your IP address range for SSH access (e.g., 203.0.113.0/24)
+    Type: String
+
+Resources:
+  PrivateEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      KeyName: !Ref KeyPairName
+      SubnetId: !Ref SubnetId
+      ImageId: !Ref AmiId
+      SecurityGroupIds: [!Ref PrivateEC2SecurityGroup]
+      Tags:
+        - Key: Name
+          Value: PrivateEC2
+
+  PrivateEC2SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Security group for EC2 in private subnet
+      VpcId: !Ref VpcId
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: !Ref IpAddress
+
+Outputs:
+  PrivateEC2InstanceId:
+    Description: Private EC2 Instance ID
+    Value: !Ref PrivateEC2Instance
